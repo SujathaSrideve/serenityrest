@@ -14,14 +14,15 @@ public class DemoBlazeApiStepDefinitions {
     @Steps
     private DemoBlazeApiActions demoBlazeApiActions;
 
-
     @When("I have selected product $value")
-    public void callApiForAddToCart(String value){
+    public void callApiForAddToCart(String value)
+    {
         demoBlazeApiActions.requestAddToCart(value);
     }
 
     @Then("I should get response status code $responseCode")
-    public void thenAddToCartStatusCodeReceived(int responseCode) {
+    public void thenAddToCartStatusCodeReceived(int responseCode)
+    {
         demoBlazeApiActions.verifyAddToCartStatusCode(responseCode);
     }
 
@@ -32,21 +33,20 @@ public class DemoBlazeApiStepDefinitions {
     }
 
     @When("I request delete item $productId")
-    public void callApiForDeleteItem(String productId) {
+    public void callApiForDeleteItem(String productId)
+    {
         demoBlazeApiActions.requestDeleteItemFromCart(productId);
     }
 
     @Then("I should get response status code $responseCode from API")
-    public void thenDeleteItemStatusCodeReceived(int responseCode){
-              demoBlazeApiActions.verifyDeleteItemStatusCode(responseCode);
+    public void thenDeleteItemStatusCodeReceived(int responseCode)
+    {
+        demoBlazeApiActions.verifyDeleteItemStatusCode(responseCode);
     }
 
     @Then("I should get this response $response")
     public void thenDeleteItemResponseReceived(String response){
-       // assertThat("Wrong response status code", geoApiActions.getStatusCode() ,equalTo(expectedStatusCode));
         assertThat("Wrong response from DeleteItemAPI" ,demoBlazeApiActions.verifyDeleteItemResponse(),equalTo(response.replace("'","")));
-
-
     }
 
 }
